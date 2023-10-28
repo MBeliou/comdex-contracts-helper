@@ -11,11 +11,11 @@
 	import { numberFormatter } from '$lib/utils';
 	import { Github } from 'lucide-svelte';
 	import { Button } from '$lib/components/ui/button';
-	import { PUBLIC_DENOM } from '$env/static/public';
+	import { PUBLIC_DENOM, PUBLIC_DECIMALS } from '$env/static/public';
 	import { recommendNetwork } from '$lib/network/config';
 	import { GITHUB_LINK } from '$lib/constants';
     
-    const currency = recommendNetwork.currencies[0];
+    const currency = recommendNetwork.fees.fee_tokens[0];
 
     const links = [
 		{
@@ -66,9 +66,9 @@
 						{displayedAddress}
 					</div>
 					<div class="text-xs mt-0.5">
-						{numberFormatter(parseInt($NATIVE_BALANCE.amount) * Math.pow(10, -currency.coinDecimals))}
+						{numberFormatter(parseInt($NATIVE_BALANCE.amount) * Math.pow(10, -PUBLIC_DECIMALS))}
 						<!-- <span class="tracking-wide">{recommendNetwork.currencies[0].coinDenom}</span> -->
-						<span class="tracking-wide">{currency.coinDenom}</span>
+						<span class="tracking-wide uppercase">{currency.denom}</span>
 
                     </div>
 				</div>

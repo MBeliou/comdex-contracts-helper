@@ -12,10 +12,11 @@ import { get, writable } from 'svelte/store';
 
 
 //const backup_rpc = 'https://comdex-rpc.polkachu.com/';
-const rpc = "https://rpc-comdex.imperator.co";
+//const rpc = "https://rpc-comdex.imperator.co";
 
 export const load = (async () => {
-	const batchClient = new HttpBatchClient(rpc);
+	console.log(PUBLIC_CHAIN_RPC)
+	const batchClient = new HttpBatchClient(PUBLIC_CHAIN_RPC);
 	const tendermint = await Tendermint37Client.create(batchClient);
 
 	const stargateClient = await StargateClient.create(tendermint);
